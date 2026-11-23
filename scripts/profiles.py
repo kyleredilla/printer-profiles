@@ -200,6 +200,10 @@ def cmd_check(_args):
                     rocket_links.append((rel, blk.get("PrintMode") or "enabled block", m["PlasticId"]))
         if name and name not in inventory:
             warnings.append(f"{rel}: '{name}' has no row in INVENTORY.md")
+        note = os.path.join(os.path.dirname(os.path.dirname(p)), "notes",
+                            safe_filename(name or "")[:-5] + ".md")
+        if not os.path.exists(note):
+            warnings.append(f"{rel}: no notes file ({os.path.relpath(note, ROOT)})")
         if os.path.basename(p) != safe_filename(name or ""):
             warnings.append(f"{rel}: filename doesn't match preset name '{name}'")
 

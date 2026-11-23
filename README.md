@@ -14,7 +14,10 @@ the slicers are where profiles get *used*.
 
 ```
 printers/<printer>/<slicer>/...   profiles, one JSON per preset, named after the preset
+printers/<printer>/<slicer>/notes/<preset name>.md
+                                  why each setting is what it is, open items, origin chat
 printers/<printer>/reference/     stock/expanded presets for comparison (never import these)
+SUPERSEDED.md                     retired profiles and what replaced them
 jobs/<part-name>/                 one folder per real part: NOTES.md + the .3mf project
 scripts/profiles.py               pull / ingest / check
 tools/                            helper scripts (e.g. splice_inlay G-code splicer)
@@ -30,7 +33,9 @@ tools/                            helper scripts (e.g. splice_inlay G-code splic
    - ElegooSlicer filament: `<Brand> <Material> - <Variant>` (e.g. `Siraya TPU Air - Dense 240`)
    - Rocket Slicer: `<Material> <layer> mm - <Purpose>` (e.g. `FS PET GF 0.2 mm - vacuum adapter`)
 3. **The commit message is the "why".** e.g. `TPU Air Dense 240: flow 0.88 -> 0.53 (hollow-cube calibration)`.
-4. **Every profile gets a row in INVENTORY.md.** Status is one of `active`, `testing`, `superseded`, `reference`.
+4. **Every profile gets a row in INVENTORY.md and a notes file.** Status is one of `active`, `testing`,
+   `superseded`, `reference`. When you change a setting, update its row in the notes table
+   (old → new, why) in the same commit.
 5. **Retire, don't delete.** Set status to `superseded` and note what replaced it. Git keeps the history either way.
 
 ## Workflow

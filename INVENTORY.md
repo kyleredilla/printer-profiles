@@ -1,6 +1,7 @@
 # Profile inventory
 
 Status: `active` · `testing` · `superseded` · `reference`. **In repo** = the file is committed here.
+Each profile's reasoning is in `printers/<printer>/<slicer>/notes/`; retired ones are in `SUPERSEDED.md`.
 Chat links are where each profile was made or last changed.
 
 ## Neptune 4 Plus — ElegooSlicer
@@ -10,7 +11,7 @@ Chat links are where each profile was made or last changed.
 | Name | Parent | Purpose / key settings | Status | In repo | Origin |
 |---|---|---|---|---|---|
 | Siraya TPU Air - Dense 240 | Elegoo TPU 95A @EN4 Series | Dense TPU Air base (R66/R22 stab covers). 240 °C, bed 40, fan 100 (off layer 1), no retraction/Z-hop, 4 mm³/s, 8 s min layer. Created at flow 0.88; later hollow-cube calibration gave **0.53**, so check which value your slicer copy has. | active | no | [R66 stab cover, elegoo configs](https://claude.ai/chat/643abcae-cc7c-410e-95b6-f6f59364ca40) |
-| Siraya TPU Air - Dense 240 Logo | (Dense 240) | Logo-only variant: adds retraction, wipe and Z-hop to cut stringing on the inlay logo. | testing | no | [R22 horizontal stabilizer cover](https://claude.ai/chat/66a8d21c-e0f8-4cdc-9447-bed9be27920d) |
+| Siraya TPU Air - Dense 240 Logo | (Dense 240) | Logo-only variant: flow 0.50, retraction 0.8 mm @ 25 (deretract 15), wipe 1.5 mm, Z-hop 0.2 to cut stringing on the inlay logo. | testing | no | [R22 horizontal stabilizer cover](https://claude.ai/chat/66a8d21c-e0f8-4cdc-9447-bed9be27920d) |
 | Siraya TPU Air - Surface 230 | (Dense 240) | Low-foam surface/logo layers for splice_inlay v4. 230 °C, retract 0.8 mm (25 out / 15 in), wipe 1.5 mm, Z-hop 0.2. **Flow 0.60 is an uncalibrated guess.** | testing | no | [Multicolor TPU logo printing](https://claude.ai/chat/a6701a89-15db-4018-8db1-fb87bd4eb8a4) |
 | Siraya TPU Air (dense 240C) — file `TPU Air - filament.json` | Elegoo Generic TPU (wrong parent) | First attempt; never imported. Replaced by Dense 240. | superseded | no — don't add | [R66 stab cover, elegoo configs](https://claude.ai/chat/643abcae-cc7c-410e-95b6-f6f59364ca40) |
 
