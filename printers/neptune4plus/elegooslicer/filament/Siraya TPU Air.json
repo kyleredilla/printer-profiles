@@ -1,0 +1,40 @@
+{
+    "default_filament_colour": [
+        "#000000"
+    ],
+    "filament_deretraction_speed": [
+        "30"
+    ],
+    "filament_flow_ratio": [
+        "0.6"
+    ],
+    "filament_retraction_length": [
+        "0"
+    ],
+    "filament_retraction_speed": [
+        "0"
+    ],
+    "filament_settings_id": [
+        "Siraya TPU Air"
+    ],
+    "filament_vendor": [
+        "Siraya"
+    ],
+    "from": "User",
+    "inherits": "Elegoo TPU 95A @EN4 Series",
+    "is_custom_defined": "0",
+    "name": "Siraya TPU Air",
+    "nozzle_temperature": [
+        "260"
+    ],
+    "nozzle_temperature_initial_layer": [
+        "260"
+    ],
+    "nozzle_temperature_range_high": [
+        "270"
+    ],
+    "nozzle_temperature_range_low": [
+        "230"
+    ],
+    "version": "1.3.2.9"
+}

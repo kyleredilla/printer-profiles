@@ -45,8 +45,8 @@ def classify(d):
     if isinstance(data, dict) and ("PlasticType" in data or "ExtrusionMultiplierP" in data):
         return "rocket/material", data.get("Name")
     if any(k in d for k in ROCKET_MODES):
-        blk = rocket_enabled_block(d) or {}
-        return "rocket/profile", d.get("Name") or blk.get("Name")
+        grp = d.get("ProfileGroup") or {}
+        return "rocket/profile", grp.get("Name") or d.get("Name")
     return None, None
 
 
@@ -114,7 +114,8 @@ def cmd_pull(_args):
 
     base = os.path.expanduser(cfg.get("elegooslicer_dir") or "")
     if base and os.path.isdir(base):
-        users = sorted(glob.glob(os.path.join(base, "user", "*")))
+        users = sorted(u for u in glob.glob(os.path.join(base, "user", "*"))
+                       if any(os.path.isdir(os.path.join(u, t)) for t in ("filament", "process", "machine")))
         if not users:
             print(f"ElegooSlicer: no user preset folders under {base}/user")
         if len(users) > 1:
@@ -194,10 +195,10 @@ def cmd_check(_args):
             blk = rocket_enabled_block(d)
             if not blk:
                 warnings.append(f"{rel}: no mode block has ProfileEnable=true")
-            # only the enabled block is used; the others are inert placeholders
-            for m in (blk or {}).get("ProfileMaterials") or []:
+            # material links are a top-level list; CompositeId entries are fiber, PlasticId entries are plastic
+            for m in d.get("ProfileMaterials") or []:
                 if isinstance(m, dict) and m.get("PlasticId"):
-                    rocket_links.append((rel, blk.get("PrintMode") or "enabled block", m["PlasticId"]))
+                    rocket_links.append((rel, "ProfileMaterials", m["PlasticId"]))
         if name and name not in inventory:
             warnings.append(f"{rel}: '{name}' has no row in INVENTORY.md")
         note = os.path.join(os.path.dirname(os.path.dirname(p)), "notes",
