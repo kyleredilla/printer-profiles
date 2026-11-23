@@ -1,76 +1,63 @@
 {
-    "close_fan_the_first_x_layers": [
-        "1"
-    ],
-    "default_filament_colour": [
-        "#000000"
-    ],
-    "fan_max_speed": [
-        "100"
-    ],
-    "fan_min_speed": [
-        "100"
-    ],
-    "filament_density": [
-        "0.88"
-    ],
-    "filament_deretraction_speed": [
-        "30"
-    ],
-    "filament_flow_ratio": [
-        "0.88"
-    ],
-    "filament_max_volumetric_speed": [
-        "4"
-    ],
-    "filament_retraction_length": [
-        "0"
-    ],
-    "filament_retraction_speed": [
-        "0"
-    ],
-    "filament_settings_id": [
-        "Siraya TPU Air - Dense 240"
-    ],
-    "filament_vendor": [
-        "Siraya"
-    ],
-    "filament_z_hop": [
-        "0"
-    ],
-    "from": "User",
-    "hot_plate_temp": [
-        "40"
-    ],
-    "hot_plate_temp_initial_layer": [
-        "40"
-    ],
-    "inherits": "Elegoo TPU 95A @EN4 Series",
-    "is_custom_defined": "0",
-    "name": "Siraya TPU Air - Dense 240",
-    "nozzle_temperature": [
-        "240"
-    ],
-    "nozzle_temperature_initial_layer": [
-        "240"
-    ],
-    "nozzle_temperature_range_high": [
-        "270"
-    ],
-    "nozzle_temperature_range_low": [
-        "230"
-    ],
-    "slow_down_for_layer_cooling": [
-        "1"
-    ],
-    "slow_down_layer_time": [
-        "8"
-    ],
-    "textured_plate_temp": [
-        "40"
-    ],
-    "textured_plate_temp_initial_layer": [
-        "40"
-    ],
-    "version": "1.5.3.5"
+	"default_filament_colour": [
+		"#000000"
+	],
+	"filament_density": [
+		"0.88"
+	],
+	"filament_deretraction_speed": [
+		"30"
+	],
+	"filament_extruder_variant": [
+		"Direct Drive Standard"
+	],
+	"filament_flow_ratio": [
+		"0.53"
+	],
+	"filament_max_volumetric_speed": [
+		"4"
+	],
+	"filament_retraction_length": [
+		"0"
+	],
+	"filament_retraction_speed": [
+		"0"
+	],
+	"filament_settings_id": [
+		"Siraya TPU Air - Dense 240"
+	],
+	"filament_vendor": [
+		"Siraya"
+	],
+	"filament_z_hop": [
+		"0"
+	],
+	"from": "User",
+	"hot_plate_temp": [
+		"40"
+	],
+	"hot_plate_temp_initial_layer": [
+		"40"
+	],
+	"inherits": "Elegoo TPU 95A @EN4 Series",
+	"name": "Siraya TPU Air - Dense 240",
+	"nozzle_temperature": [
+		"240"
+	],
+	"nozzle_temperature_initial_layer": [
+		"240"
+	],
+	"nozzle_temperature_range_high": [
+		"270"
+	],
+	"nozzle_temperature_range_low": [
+		"230"
+	],
+	"textured_plate_temp": [
+		"40"
+	],
+	"textured_plate_temp_initial_layer": [
+		"40"
+	],
+	"version": "1.5.3.5"
 }
