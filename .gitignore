@@ -1,0 +1,8 @@
+# slicer sidecar / OS junk
+*.info
+.DS_Store
+__pycache__/
+
+# sliced output is reproducible from the .3mf + profiles
+*.gcode
+*.bgcode
