@@ -4,6 +4,8 @@
   python3 scripts/profiles.py pull            copy user presets out of the slicers (see sync_config.json)
   python3 scripts/profiles.py ingest FILE...  file exported/downloaded profiles into the right folder
   python3 scripts/profiles.py check           validate every profile in the repo
+  python3 scripts/profiles.py diff [REV]      setting-level changes vs. a git revision (default HEAD),
+                                              ignoring the formatting churn the slicers create
 
 Files are routed by content, not by filename:
   ElegooSlicer filament / process / machine  -> printers/neptune4plus/elegooslicer/<type>/
@@ -201,7 +203,7 @@ def cmd_check(_args):
                     rocket_links.append((rel, "ProfileMaterials", m["PlasticId"]))
         if name and name not in inventory:
             warnings.append(f"{rel}: '{name}' has no row in INVENTORY.md")
-        note = os.path.join(os.path.dirname(os.path.dirname(p)), "notes",
+        note = os.path.join(os.path.dirname(os.path.dirname(p)), "notes", os.path.basename(os.path.dirname(p)),
                             safe_filename(name or "")[:-5] + ".md")
         if not os.path.exists(note):
             warnings.append(f"{rel}: no notes file ({os.path.relpath(note, ROOT)})")
@@ -223,6 +225,45 @@ def cmd_check(_args):
     sys.exit(1 if problems else 0)
 
 
+def _flat(d, prefix=""):
+    """Flatten nested JSON into {path: value}; single-item lists collapse to the item."""
+    out = {}
+    if isinstance(d, list) and len(d) == 1 and not isinstance(d[0], (dict, list)):
+        d = d[0]
+    if isinstance(d, dict):
+        for k, v in d.items():
+            out.update(_flat(v, f"{prefix}.{k}" if prefix else k))
+    elif isinstance(d, list) and any(isinstance(x, (dict, list)) for x in d):
+        for i, v in enumerate(d):
+            out.update(_flat(v, f"{prefix}[{i}]"))
+    else:
+        out[prefix] = d
+    return out
+
+
+def cmd_diff(args):
+    import subprocess
+    rev = args.rev
+    os.chdir(ROOT)
+    changed = subprocess.run(["git", "diff", "--name-only", rev, "--", "printers"],
+                             capture_output=True, text=True, check=True).stdout.split("\n")
+    changed += subprocess.run(["git", "ls-files", "--others", "--exclude-standard", "printers"],
+                              capture_output=True, text=True, check=True).stdout.split("\n")
+    for path in sorted({c for c in changed if c.endswith(".json")}):
+        old = subprocess.run(["git", "show", f"{rev}:{path}"], capture_output=True, text=True)
+        a = _flat(json.loads(old.stdout)) if old.returncode == 0 else None
+        b = _flat(load(path)) if os.path.exists(path) else None
+        print(f"== {path}" + (" (new)" if a is None else " (deleted)" if b is None else ""))
+        if a is None or b is None:
+            continue
+        rows = [(k, a.get(k, "<inherited>"), b.get(k, "<inherited>")) for k in sorted(set(a) | set(b))
+                if str(a.get(k)) != str(b.get(k))]
+        for k, x, y in rows:
+            print(f"   {k}: {str(x)[:70]}  ->  {str(y)[:70]}")
+        if not rows:
+            print("   (formatting only)")
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest="cmd", required=True)
@@ -231,6 +272,9 @@ def main():
     ing.add_argument("files", nargs="+")
     ing.set_defaults(fn=cmd_ingest)
     sub.add_parser("check").set_defaults(fn=cmd_check)
+    df = sub.add_parser("diff")
+    df.add_argument("rev", nargs="?", default="HEAD")
+    df.set_defaults(fn=cmd_diff)
     a = ap.parse_args()
     a.fn(a)
 

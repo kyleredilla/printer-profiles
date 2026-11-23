@@ -1,7 +1,7 @@
 # Siraya TPU Air - Surface 230 (filament)
 
 - **Parent:** Dense 240 / Logo presets
-- **Status:** testing; flow not calibrated
+- **Status:** testing
 - **Used by:** splice_inlay v4: logo + body surface layers up to the logo top
 - **Origin:** [Multicolor TPU logo printing](https://claude.ai/chat/a6701a89-15db-4018-8db1-fb87bd4eb8a4)
 - **Location found:** Mac: `~/base/print_splicing/R22_stab_cover/profiles/`
@@ -14,7 +14,7 @@ Low-foam preset for the visible bottom face and the inlaid logo. It foams less a
 | Setting | Parent / before | Value | Why |
 |---|---|---|---|
 | Nozzle temp | 240 | 230 °C | Bottom of Siraya's 230–270 °C range: denser, stiffer (~85A), least foaming, less ooze. |
-| Flow ratio | 0.53 | 0.60 (**guess**) | Less foaming needs more filament; ~13 % over the 240 °C value. **Calibrate before a real print.** |
+| Flow ratio | 0.53 | **0.72** (created as 0.60) | Created as a guess (~13 % over the 240 °C value, since it foams less). Changed to 0.72 by hand in the slicer (file dated 2026-11-05); the reason isn't recorded. **Add it: calibration result or estimate?** |
 | Retraction / speed / deretraction | 0 | 0.8 mm / 25 / 15 mm/s | Same reasoning as the Logo preset. |
 | Wipe | off | 1.5 mm |  |
 | Z-hop | 0 | 0.2 mm |  |

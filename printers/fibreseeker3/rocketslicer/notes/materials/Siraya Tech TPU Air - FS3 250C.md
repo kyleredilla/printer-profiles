@@ -11,7 +11,7 @@ TPU Air on the FibreSeeker 3's right plastic nozzle, FFF only (Speedy). It can't
 
 | Setting | Parent / before | Value | Why |
 |---|---|---|---|
-| TemperaturePrint / OnFLs | 250 | 250 °C | Middle of Siraya's range; 240 °C at flow ~0.65–0.70 gives crisper detail (v1 used 260). |
+| TemperaturePrint | 250 | 250 °C (first-layer override empty, so also 250) | Middle of Siraya's range; 240 °C at flow ~0.65–0.70 gives crisper detail (v1 used 260). |
 | ExtrusionMultiplierP (flow) | 1.00 | 0.60 | Foams at this temperature. Guide: 240 °C ≈ 0.65–0.70, 260 ≈ 0.55, 270 ≈ 0.50. |
 | BedTemperature / OnFLs | 75 | 40 °C | Siraya 30–45 °C; PVP glue on PEI. |
 | RetractionSpeed / LengthOnTravel | 20 / 1 | 0 / 0 | Siraya: retraction off for foaming TPU. |
@@ -19,10 +19,10 @@ TPU Air on the FibreSeeker 3's right plastic nozzle, FFF only (Speedy). It can't
 | ZHopP | 0.4 | 0 | No retraction, so a hop only adds strings. |
 | RegularFanSpeed / MaximumFanSpeed | 20 / 80 | 100 / 100 | Siraya: 100 %. The first layer still runs fan-off. |
 | MaxVolumetricSpeed | 25 | 8 mm³/s | Soft TPU feed limit (v1 used 4; raised in the review). |
-| Density / CostPerSpool | 1.27 / 20 | 1.2 / 49.99 | Estimates only. |
+| Density / CostPerSpool | 1.27 / 20 | 1.27 / 20 (unchanged) | Still the PETG template values. Set ~1.2 g/cm³ and your spool price for accurate weight and cost estimates. |
 
 ## Left alone on purpose
-- `PlasticType` stays "PETG" and `Manufacturer` stays "FIBRESEEK": the slicer may reject other values on import.
+- `PlasticType` is "TPU" and `Manufacturer` is "SIRAYATECH", as set in your own export before the review; the import accepted them.
 - Internal `Id` kept, so re-importing overwrites this entry instead of duplicating it. The print profile links to it by that Id.
 
 ## Handling

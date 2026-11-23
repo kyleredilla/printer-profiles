@@ -28,7 +28,7 @@ Base preset for Siraya Tech Flex TPU Air printed dense (less foaming) on the Nep
 - M221 % = (flow at the foam temperature) ÷ (this preset's flow). Recalculate it whenever either flow changes; with 0.53 here the old S66 is wrong.
 
 ## To verify
-- Confirm the slicer copy says flow 0.53.
+- **Verified 2026-11-23 from the slicer:** flow 0.53. The fan, cooling and min-layer-time keys were dropped when the slicer saved, because they equal the parent (Elegoo TPU 95A @EN4 Series). They're inherited, not lost.
 - `filament_density` is **0.88**, which looks like the flow value pasted into the wrong field (TPU is ~1.2 g/cm³). It only affects weight and cost estimates. Fix it to ~1.2 in the slicer and pull again.
 - Temperature-tower results (215–235 °C, see Surface 230) suggest stringing comes from moisture or seam placement, not temperature. Dry the spool at 70–80 °C for 4–6 h.
 

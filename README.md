@@ -14,7 +14,7 @@ the slicers are where profiles get *used*.
 
 ```
 printers/<printer>/<slicer>/...   profiles, one JSON per preset, named after the preset
-printers/<printer>/<slicer>/notes/<preset name>.md
+printers/<printer>/<slicer>/notes/<type>/<preset name>.md
                                   why each setting is what it is, open items, origin chat
 printers/<printer>/reference/     stock/expanded presets for comparison (never import these)
 SUPERSEDED.md                     retired profiles and what replaced them
@@ -50,8 +50,8 @@ python3 scripts/profiles.py ingest ~/Downloads/*.json
 # 3. Sanity-check everything (valid JSON, names, Rocket material links)
 python3 scripts/profiles.py check
 
-# 4. Review and commit
-git diff
+# 4. Review (setting-level; plain `git diff` shows the slicer's reformatting too) and commit
+python3 scripts/profiles.py diff
 git add -A && git commit -m "Dart box PETG: bridge speed 25 -> 20 (sagging over drawer)"
 ```
 
@@ -75,6 +75,8 @@ entry starts empty: export from Rocket Slicer and use `ingest` until it's filled
   (e.g. `0.20mm Standard @Elegoo N4Plus 0.4 nozzle`, `Elegoo TPU 95A @EN4 Series`).
 - Retraction, fan and minimum layer time live in the **filament** preset, not the process preset.
 - `.info` sidecar files are ignored by git (timestamps only).
+- On save, the slicer **drops any key equal to the parent's value** and reorders the rest. A
+  setting showing as `<inherited>` in `profiles.py diff` wasn't lost; it now comes from the parent.
 
 **Rocket Slicer**
 - Built-in templates can't be edited; copy one first.

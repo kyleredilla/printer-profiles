@@ -1,7 +1,7 @@
 # Dart box PETG (process) — file `Dart_Box_PETG_N4Plus.json`
 
 - **Parent:** `0.24mm Draft @Elegoo N4Plus 0.4 nozzle`
-- **Status:** active (rename this note to the real preset name once pulled)
+- **Status:** **missing**. It was never imported into ElegooSlicer and isn't in Downloads (export of 2026-11-23); only the PLA test version exists. This note is the full record of the intended settings. Rebuild the preset before the PETG print, ideally as a Rev B preset that includes the recommendations below.
 - **Used by:** dart box, final build in PETG
 - **Origin:** [Printing with PLA advice](https://claude.ai/chat/55c2e0c1-71c2-41d6-a611-69e7294c37bd); Rev B print notes in [Dart box rework in Fusion 360](https://claude.ai/chat/d8768692-00b6-4a82-bbe1-549cfc11935a)
 
